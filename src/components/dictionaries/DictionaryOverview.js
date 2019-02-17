@@ -9,61 +9,77 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Paper from '@material-ui/core/Paper';
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import { Link } from 'react-router-dom';
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein };
-}
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
 
-function DictionaryOverview(props) {
+class DictionaryOverview extends React.Component {
 
-    return (
-        <div  className="root">
-            <AppBar className="page-navbar" color="default">
-                <Toolbar alignContent="space-between">
-                    <Typography variant="h6" color="inherit">
-                        Dictionaries
-                    </Typography>
-                    <Button color="inherit" href="dictionaries/create">Create dictionary</Button>
-                </Toolbar>
-            </AppBar>
-            <Paper>
-                <Table className="table">
-                    <TableHead>
-                        <TableRow>
-                            <TableCell>Dessert (100g serving)</TableCell>
-                            <TableCell align="right">Calories</TableCell>
-                            <TableCell align="right">Fat (g)</TableCell>
-                            <TableCell align="right">Carbs (g)</TableCell>
-                            <TableCell align="right">Protein (g)</TableCell>
-                        </TableRow>
-                    </TableHead>
-                    <TableBody>
-                        {rows.map(row => (
-                            <TableRow key={row.id}>
-                                <TableCell component="th" scope="row">
-                                    {row.name}
-                                </TableCell>
-                                <TableCell align="right">{row.calories}</TableCell>
-                                <TableCell align="right">{row.fat}</TableCell>
-                                <TableCell align="right">{row.carbs}</TableCell>
-                                <TableCell align="right">{row.protein}</TableCell>
+    constructor(props) {
+        super(props);
+        this.state = {
+            dictionaries: []
+        };
+    }
+
+    componentWillMount =  () => {
+        var data =  JSON.parse(localStorage.getItem("dictionaries"))
+        this.setState({dictionaries : data});
+    }
+
+    removeDictionary = (dictionaryIndex) =>{
+
+    }
+
+    editDictionary = (dictionaryIndex) =>{
+
+    }
+
+    render() {
+
+        return (
+            <div className="root">
+                <AppBar className="page-navbar" color="default">
+                    <Toolbar alignContent="space-between">
+                        <Typography variant="h6" color="inherit">
+                            Dictionaries
+                        </Typography>
+                        <Button color="primary" component={Link} to="dictionaries/create">Create dictionary</Button>
+                    </Toolbar>
+                </AppBar>
+                <Paper>
+                    <Table className="table">
+                        <TableHead>
+                            <TableRow>
+                                <TableCell>Name</TableCell>
+                                <TableCell align="right">Description</TableCell>
+                                <TableCell align="right">Actions</TableCell>
                             </TableRow>
-                        ))}
-                    </TableBody>
-                </Table>
-            </Paper>
-        </div>
+                        </TableHead>
+                        <TableBody>
+                            {this.state.dictionaries.map((row, index) => (
+                                <TableRow key={index}>
+                                    <TableCell align="right">{row.name}</TableCell>
+                                    <TableCell align="right">{row.description}</TableCell>
+                                    <TableCell align="right">
+                                        <IconButton aria-label="Delete"  color="primary" onClick={() => this.removeDictionary(index)}>
+                                            <DeleteIcon />
+                                        </IconButton>
+                                        <IconButton aria-label="Delete" color="primary" onClick={() => this.editDictionary(index)}>
+                                            <EditIcon />
+                                        </IconButton>
+                                    </TableCell>
+                                </TableRow>
+                            ))}
+                        </TableBody>
+                    </Table>
+                </Paper>
+            </div>
 
-    );
+        );
+    }
 }
 export default DictionaryOverview;
