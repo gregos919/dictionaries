@@ -1,0 +1,17 @@
+.content {
+  flex-grow: 1;
+  padding-top: 110px;
+}
+
+.App{
+ padding-left: 240px;
+  padding-right: 50px;
+}
+
+.App .page-navbar{
+  left: 190px;
+}
+
+.grow{
+  flex-grow: 1;
+}
