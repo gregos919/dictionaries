@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import NavBar from './components/nav/NavBar';
 import DictionaryOverview from './components/dictionaries/DictionaryOverview';
 import DictionaryCreate from './components/dictionaries/DictionaryCreate';
-import { Switch, Route } from 'react-router-dom'
+import { Switch, Route } from 'react-router-dom';
+
 import './App.css';
 
 class App extends Component {
