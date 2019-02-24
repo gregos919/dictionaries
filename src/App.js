@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import DictionaryOverview from './components/dictionaries/DictionaryOverview';
 import DictionaryCreate from './components/dictionaries/DictionaryCreateEdit';
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Route, Redirect } from 'react-router-dom';
 
 import './App.css';
 

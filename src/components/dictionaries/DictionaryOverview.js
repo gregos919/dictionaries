@@ -60,11 +60,11 @@ class DictionaryOverview extends React.Component {
         return (
             <div className="root">
                 <AppBar className="page-navbar" color="default">
-                    <Toolbar alignContent="space-between">
+                    <Toolbar>
                         <Typography variant="h6" color="inherit" className="header-title">
                             Dictionaries Overview
                         </Typography>
-                        <Button variant="contained" color="green" className="save-button" component={Link} style={{marginLeft: "auto"}} to="dictionaries/create">Create dictionary</Button>
+                        <Button variant="contained" className="save-button" component={Link} style={{marginLeft: "auto"}} to="dictionaries/create">Create dictionary</Button>
                     </Toolbar>
                 </AppBar>
                 <Paper className="table-parent">
@@ -77,10 +77,10 @@ class DictionaryOverview extends React.Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
-                            <TableRow className={(this.state.dictionaries.length == 0 ? 'visible' : "hidden")}>
-                                <TableCell align="center" colspan="4" className="no-data-cell">
+                            <TableRow className={(this.state.dictionaries.length === 0 ? 'visible' : "hidden")}>
+                                <TableCell align="center" colSpan="4" className="no-data-cell">
                                     <strong><i>No dictionaries created yet.</i></strong><br/>
-                                    <Button variant="contained" color="green" className="save-button" component={Link} to="dictionaries/create">Create dictionary</Button>
+                                    <Button variant="contained" className="save-button" component={Link} to="dictionaries/create">Create dictionary</Button>
                                 </TableCell>
                             </TableRow>
                             {this.state.dictionaries.map((row, index) => (

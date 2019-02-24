@@ -12,7 +12,6 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
-import { spacing } from '@material-ui/system';
 import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
@@ -143,8 +142,8 @@ class DictionaryCreateEdit extends React.Component {
                                 </TableHead>
                                 <TableBody>
 
-                                    <TableRow className={(this.state.dictionaryData.length == 0 ? 'visible' : "hidden")}>
-                                        <TableCell align="center" colspan="4">
+                                    <TableRow className={(this.state.dictionaryData.length === 0 ? 'visible' : "hidden")}>
+                                        <TableCell align="center" colSpan="4">
                                             <strong><i>No rows added yet. Please use right box to create first row for this dictionary.</i></strong>
                                         </TableCell>
                                     </TableRow>
@@ -288,7 +287,7 @@ class DictionaryCreateEdit extends React.Component {
 
         let highlightedRowIndex = this.state.dictionaryData.some((rowData, rowIndex) =>
            {
-               if(this.state.editedRowIndex === null || this.state.editedRowIndex != rowIndex)
+               if(this.state.editedRowIndex === null || this.state.editedRowIndex !== rowIndex)
                {
                    if(rowData.domain === rowForValidation.domain)
                    {
@@ -472,7 +471,7 @@ class DictionaryCreateEdit extends React.Component {
             ? JSON.parse(localStorage.getItem("dictionaries"))
             : [];
 
-        if(this.state.editedDictionaryIndex == null)
+        if(this.state.editedDictionaryIndex === null)
         {
             storedDictionaries.push(newDictionary);
         }
