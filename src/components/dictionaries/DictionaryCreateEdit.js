@@ -17,10 +17,11 @@ import IconButton from '@material-ui/core/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit';
 import CompareArrowsIcon from '@material-ui/icons/CompareArrows';
+import { withSnackbar } from 'notistack';
 
 import './DictionaryCreateEdit.css';
 
-class DictionaryCreate extends React.Component {
+class DictionaryCreateEdit extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -294,6 +295,10 @@ class DictionaryCreate extends React.Component {
         this.setState(prevState => ({
             dictionaryData: [...dataCopy]
         }));
+
+        this.props.enqueueSnackbar('Your notification here', {
+            variant: 'success',
+        });
     }
 
     editRow = (dictionary, index) =>{
@@ -499,4 +504,4 @@ class DictionaryCreate extends React.Component {
     }
 }
 
-export default DictionaryCreate;
+export default withSnackbar(DictionaryCreateEdit);
