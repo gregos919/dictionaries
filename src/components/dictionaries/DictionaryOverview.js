@@ -40,12 +40,16 @@ class DictionaryOverview extends React.Component {
             dictionaries: [...dictionariesCopy]
         }));
 
+        this.props.enqueueSnackbar('Dictionary deleted successfully', {
+            variant: 'success'
+        });
+
         localStorage.setItem("dictionaries", JSON.stringify(dictionariesCopy));
     }
 
     editDictionary = (dictionaryIndex) =>{
         this.props.history.push({
-            pathname: '/dictionaries/create',
+            pathname: '/dictionaries/edit',
             search: '?index=' + dictionaryIndex,
             state: { index: dictionaryIndex }
         })
@@ -57,10 +61,10 @@ class DictionaryOverview extends React.Component {
             <div className="root">
                 <AppBar className="page-navbar" color="default">
                     <Toolbar alignContent="space-between">
-                        <Typography variant="h6" color="inherit">
-                            Dictionaries
+                        <Typography variant="h6" color="inherit" className="header-title">
+                            Dictionaries Overview
                         </Typography>
-                        <Button color="primary" component={Link} to="dictionaries/create">Create dictionary</Button>
+                        <Button variant="contained" color="green" className="save-button" component={Link} style={{marginLeft: "auto"}} to="dictionaries/create">Create dictionary</Button>
                     </Toolbar>
                 </AppBar>
                 <Paper className="table-parent">
@@ -73,15 +77,21 @@ class DictionaryOverview extends React.Component {
                             </TableRow>
                         </TableHead>
                         <TableBody>
+                            <TableRow className={(this.state.dictionaries.length == 0 ? 'visible' : "hidden")}>
+                                <TableCell align="center" colspan="4" className="no-data-cell">
+                                    <strong><i>No dictionaries created yet.</i></strong><br/>
+                                    <Button variant="contained" color="green" className="save-button" component={Link} to="dictionaries/create">Create dictionary</Button>
+                                </TableCell>
+                            </TableRow>
                             {this.state.dictionaries.map((row, index) => (
                                 <TableRow key={index}>
                                     <TableCell>{row.name}</TableCell>
                                     <TableCell>{row.description}</TableCell>
                                     <TableCell align="center">
-                                        <IconButton aria-label="Delete"  color="primary" onClick={() => this.removeDictionary(index)}>
+                                        <IconButton aria-label="Delete"  color="secondary" onClick={() => this.removeDictionary(index)}>
                                             <DeleteIcon />
                                         </IconButton>
-                                        <IconButton aria-label="Delete" color="primary" onClick={() => this.editDictionary(index)}>
+                                        <IconButton aria-label="Edit" color="primary" onClick={() => this.editDictionary(index)}>
                                             <EditIcon />
                                         </IconButton>
                                     </TableCell>
