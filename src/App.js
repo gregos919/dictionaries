@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import NavBar from './components/nav/NavBar';
 import DictionaryOverview from './components/dictionaries/DictionaryOverview';
-import DictionaryCreate from './components/dictionaries/DictionaryCreate';
+import DictionaryCreate from './components/dictionaries/DictionaryCreateEdit';
 import { Switch, Route } from 'react-router-dom';
 
 import './App.css';

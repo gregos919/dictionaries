@@ -16,6 +16,7 @@ import { Link } from 'react-router-dom';
 
 
 
+
 class DictionaryOverview extends React.Component {
 
     constructor(props) {
@@ -31,11 +32,23 @@ class DictionaryOverview extends React.Component {
     }
 
     removeDictionary = (dictionaryIndex) =>{
+        let dictionariesCopy = this.state.dictionaries;
 
+        dictionariesCopy.splice(dictionaryIndex, 1);
+
+        this.setState(prevState => ({
+            dictionaries: [...dictionariesCopy]
+        }));
+
+        localStorage.setItem("dictionaries", JSON.stringify(dictionariesCopy));
     }
 
     editDictionary = (dictionaryIndex) =>{
-
+        this.props.history.push({
+            pathname: '/dictionaries/create',
+            search: '?index=' + dictionaryIndex,
+            state: { index: dictionaryIndex }
+        })
     }
 
     render() {
@@ -50,21 +63,21 @@ class DictionaryOverview extends React.Component {
                         <Button color="primary" component={Link} to="dictionaries/create">Create dictionary</Button>
                     </Toolbar>
                 </AppBar>
-                <Paper>
+                <Paper className="table-parent">
                     <Table className="table">
                         <TableHead>
                             <TableRow>
                                 <TableCell>Name</TableCell>
-                                <TableCell align="right">Description</TableCell>
-                                <TableCell align="right">Actions</TableCell>
+                                <TableCell>Description</TableCell>
+                                <TableCell align="center">Actions</TableCell>
                             </TableRow>
                         </TableHead>
                         <TableBody>
                             {this.state.dictionaries.map((row, index) => (
                                 <TableRow key={index}>
-                                    <TableCell align="right">{row.name}</TableCell>
-                                    <TableCell align="right">{row.description}</TableCell>
-                                    <TableCell align="right">
+                                    <TableCell>{row.name}</TableCell>
+                                    <TableCell>{row.description}</TableCell>
+                                    <TableCell align="center">
                                         <IconButton aria-label="Delete"  color="primary" onClick={() => this.removeDictionary(index)}>
                                             <DeleteIcon />
                                         </IconButton>
