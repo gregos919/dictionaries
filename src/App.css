@@ -1,19 +1,27 @@
+body{
+    background-color: lightgray;
+}
+
 .content {
-  flex-grow: 1;
-  padding-top: 110px;
+    flex-grow: 1;
+    padding-top: 110px;
 }
 
 .App{
- padding-left: 240px;
-  padding-right: 50px;
+    padding-left: 50px;
+    padding-right: 50px;
 }
 
 .App .page-navbar{
-  left: 190px;
+    left: 0px;
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #3f51b5;
+    color: white;
 }
 
 .grow{
-  flex-grow: 1;
+    flex-grow: 1;
 }
 
 .page-paper{
@@ -26,4 +34,32 @@
     font-size: 20px;
     color: #3f51b5;
     margin-top: 0;
+}
+
+.header-title{
+    margin-right: 15px !important;
+    font-size: 1rem !important;
+}
+
+table tr th{
+    color: black !important;
+    font-weight: bold !important;
+    font-size: 1rem !important;
+    padding: 4px 24px !important;
+}
+
+table tr td{
+    padding: 4px 24px !important;
+}
+
+.save-button{
+    background-color: #3fb5a3 !important;
+    color: white !important;
+}
+
+.no-data-cell{
+    padding: 30px !important;
+}
+.no-data-cell a{
+    margin-top: 15px !important;
 }
